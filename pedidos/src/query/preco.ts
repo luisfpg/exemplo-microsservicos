@@ -1,4 +1,4 @@
-export interface DefinirPreco {
+export interface Preco {
   precoNormal: number,
   precoPromocional?: number
 }

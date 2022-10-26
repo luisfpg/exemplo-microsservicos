@@ -1,7 +1,7 @@
-import { Produto } from './produto';
+import { ProdutoPrecoEstoque } from './produto-preco-estoque';
 
 export interface Item {
-  produto: Produto,
+  produto: ProdutoPrecoEstoque,
   quantidade: number,
   valorTotal: number,
 }

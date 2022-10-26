@@ -13,10 +13,10 @@
   "dependencies": {
     "@hapi/boom": "^10.0.0",
     "@hapi/hapi": "^20.2.2",
-    "dotenv": "^16.0.3"
+    "consul": "^1.1.0"
   },
   "devDependencies": {
-    "@types/amqplib": "^0.8.2",
+    "@types/consul": "^0.40.0",
     "@types/hapi__hapi": "^20.0.12",
     "@types/node": "^18.8.4",
     "@typescript-eslint/eslint-plugin": "^5.40.0",

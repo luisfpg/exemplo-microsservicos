@@ -46,7 +46,7 @@ export class Servico {
     produto.maximoNoCarrinho = dto.maximoNoCarrinho;
     produto.fabricante = this.fabricantes.get(dto.fabricante);
     produto.categoria = this.categorias.get(dto.categoria);
-    return Promise.resolve();
+    return Promise.resolve(null);
   }
 
   async remover(id: string): Promise<void> {
@@ -54,7 +54,7 @@ export class Servico {
       Promise.reject('Não econtrado');
     }
     this.produtos.delete(id);
-    return Promise.resolve();
+    return Promise.resolve(null);
   }
 
   private async validar(dto: ProdutoDto): Promise<void> {

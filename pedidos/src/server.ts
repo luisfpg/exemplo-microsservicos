@@ -1,6 +1,7 @@
 import { server as HapiServer } from '@hapi/hapi';
 import Consul from 'consul';
 import { randomUUID } from 'crypto';
+import { FecharPedido } from './command/fechar-pedido';
 import { Servico } from './servico';
 
 const consul = new Consul();
@@ -19,34 +20,22 @@ const init = async () => {
   });
 
   server.route({
-    method: 'GET',
-    path: '/api/',
-    handler: () => servico.ler()
-  });
-
-  server.route({
-    method: 'PUT',
-    path: '/api/{id}',
-    handler: req => servico.ajustar(req.params.id, Number(req.query.quantidade))
-  });
-
-  server.route({
-    method: 'DELETE',
-    path: '/api/',
-    handler: () => servico.limpar()
-  });
-
-  server.route({
     method: 'POST',
-    path: '/api/checkout',
-    handler: () => servico.checkout()
+    path: '/api/',
+    handler: req => servico.fechar(req.payload as FecharPedido)
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/api/{id}',
+    handler: req => servico.ler(req.params.id)
   });
 
   await server.start();
-  console.log('Carrinho de compras iniciado em %s', server.info.uri);
+  console.log('Pedidos iniciado em %s', server.info.uri);
 
   const opts: Consul.Agent.Service.RegisterOptions = {
-    name: 'carrinho',
+    name: 'pedidos',
     address: server.info.host,
     port: server.info.port as number,
     id: consulId,

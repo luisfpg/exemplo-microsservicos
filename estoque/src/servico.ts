@@ -1,10 +1,23 @@
 import { notFound } from '@hapi/boom';
+import { Consul } from 'consul';
 import { ProdutosApi } from './api/produtos-api';
 import { ProdutoEstoque } from './query/produto-estoque';
 
 export class Servico {
   private produtosApi = new ProdutosApi();
   private estoque = new Map<string, number>();
+
+  constructor(consul: Consul) {
+    consul.watch({
+      method: consul.health.service,
+      options: ({
+        service: 'produtos',
+        passing: true
+      } as any)
+    }).on('change', (nodos) => {
+      this.produtosApi.baseUrl = nodos.map(n => `http://${n.Service.Address}:${n.Service.Port}/api`)[0];
+    }).on('error', e => console.error(e));
+  }
 
   async ajustar(id: string, ajuste: number): Promise<number> {
     const produto = await this.ler(id);

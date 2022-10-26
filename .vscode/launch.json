@@ -45,6 +45,34 @@
         "start"
       ],
       "cwd": "${workspaceFolder}/precos"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Carrinho",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "start"
+      ],
+      "cwd": "${workspaceFolder}/carrinho"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "API",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "start"
+      ],
+      "cwd": "${workspaceFolder}/api"
     }
   ]
 }

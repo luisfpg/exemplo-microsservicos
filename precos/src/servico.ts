@@ -3,19 +3,32 @@ import { DefinirPreco } from './command/definir-preco';
 import { ProdutoPreco } from './query/produto-preco';
 import { ProdutosApi } from './api/produtos-api';
 import { Preco } from './query/preco';
+import { Consul } from 'consul';
 
 export class Servico {
   private produtosApi = new ProdutosApi();
   private precos = new Map<string, Preco>();
 
-  async definir(params: DefinirPreco): Promise<void> {
+  constructor(consul: Consul) {
+    consul.watch({
+      method: consul.health.service,
+      options: ({
+        service: 'produtos',
+        passing: true
+      } as any)
+    }).on('change', (nodos) => {
+      this.produtosApi.baseUrl = nodos.map(n => `http://${n.Service.Address}:${n.Service.Port}/api`)[0];
+    }).on('error', e => console.error(e));
+  }
+
+  async definir(id: string, params: DefinirPreco): Promise<void> {
     await this.validar(params);
     const preco: Preco = {
       precoNormal: params.precoNormal,
       precoPromocional: params.precoPromocional
     };
-    this.precos.set(params.produto, preco);
-    return Promise.resolve();
+    this.precos.set(id, preco);
+    return Promise.resolve(null);
   }
 
   async ler(id: string): Promise<ProdutoPreco> {

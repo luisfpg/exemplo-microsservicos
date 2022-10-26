@@ -1,7 +1,7 @@
 {
-  "name": "carrinho",
+  "name": "pedidos",
   "version": "1.0.0",
-  "description": "Carrinho de compras",
+  "description": "Gerenciamento de pedidos",
   "author": "Luis Fernando Planella Gonzalez",
   "license": "MIT",
   "main": "dist/server.js",

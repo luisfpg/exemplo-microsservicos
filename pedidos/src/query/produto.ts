@@ -3,5 +3,5 @@ export interface Produto {
   nome: string,
   decimaisQuantidade: number,
   minimoNoCarrinho: number,
-  maximoNoCarrinho?: number
+  maximoNoCarrinho?: number,
 }

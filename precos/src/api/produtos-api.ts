@@ -1,16 +1,13 @@
-import axios, { AxiosInstance } from 'axios';
+import axios from 'axios';
 import { Produto } from '../query/produto';
 
 export class ProdutosApi {
 
-  private request: AxiosInstance;
-  constructor() {
-    this.request = axios.create({
-      baseURL: process.env.PRODUTOS_URL
-    });
-  }
+  baseUrl: string;
 
   async ler(id: string): Promise<Produto> {
-    return (await this.request.get(`/${id}`)).data;
+    return (await axios.get(`/${id}`, {
+      baseURL: this.baseUrl
+    })).data;
   }
 }

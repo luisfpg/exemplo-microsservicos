@@ -1,7 +1,7 @@
 {
-  "name": "carrinho",
+  "name": "api",
   "version": "1.0.0",
-  "description": "Carrinho de compras",
+  "description": "API gateway",
   "author": "Luis Fernando Planella Gonzalez",
   "license": "MIT",
   "main": "dist/server.js",
@@ -11,14 +11,15 @@
     "start": "nodemon --watch src src/server.ts"
   },
   "dependencies": {
-    "@hapi/boom": "^10.0.0",
+    "@hapi/h2o2": "^10.0.0",
     "@hapi/hapi": "^20.2.2",
-    "axios": "^1.1.3",
-    "consul": "^1.1.0"
+    "consul": "^1.1.0",
+    "dotenv": "^16.0.3"
   },
   "devDependencies": {
     "@types/consul": "^0.40.0",
-    "@types/hapi__hapi": "^20.0.12",
+    "@types/hapi__h2o2": "^8.3.3",
+    "@types/hapi__hapi": "^20.0.13",
     "@types/node": "^18.8.4",
     "@typescript-eslint/eslint-plugin": "^5.40.0",
     "eslint": "^8.25.0",
