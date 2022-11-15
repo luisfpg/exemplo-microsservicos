@@ -1,4 +1,4 @@
-import h2o2, { ProxyTarget } from '@hapi/h2o2';
+import h2o2 from '@hapi/h2o2';
 import { server as HapiServer } from '@hapi/hapi';
 import Consul from 'consul';
 import dotenv from 'dotenv';
