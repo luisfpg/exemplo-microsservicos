@@ -28,7 +28,7 @@ Não são usadas bases de dados reais. Cada vez que os serviços são reiniciado
 Para instalá-lo, digite em um terminal:
 
 ```bash
-docker run -d --name=dev-consul --network=host consul
+docker run -d --name=dev-consul --network=host consul:1.15.4
 ```
 
 # Iniciando os serviços
